@@ -31,6 +31,12 @@ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysqldb -D
 make  
 make install
 
+ yum install –y openssl openssl-devel ncurses ncurses-devel
+ 有报错时，cmake有个文件我们需要删除，删除当前目录下CMakeCache.txt文件并重新编译
+ rm -rf CMakeCache.txt 
+ 
+ 
+
 
 
 
