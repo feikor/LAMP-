@@ -17,6 +17,10 @@ useradd -r -g mysql mysql
 mkdir -p /usr/local/mysql  
 新建mysql数据库数据文件目录
 mkdir -p /data/mysqldb 
+-----------------------下面未做
+chmod +w /usr/local/mysql
+chown -R mysql:mysql /usr/local/mysql
+------------------------
 
 四、下载MySQL源码包并解压
 wget https://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.38.tar.gz
@@ -33,7 +37,7 @@ make install
 
  yum install –y openssl openssl-devel ncurses ncurses-devel
  有报错时，cmake有个文件我们需要删除，删除当前目录下CMakeCache.txt文件并重新编译
- rm -rf CMakeCache.txt 
+ rm -rf CMakeCache.txt （删除可能会报错）
  
  
 
