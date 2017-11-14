@@ -155,7 +155,7 @@ make && make install
 修改mysql安装目录
 cd /usr/local/mysql   
 chown -R mysql:mysql . 
-
+chown -R mysql:mysql /usr/local/mysql
 修改mysql数据库文件目录
 cd /data/mysqldb  
 chown -R mysql:mysql .
@@ -192,6 +192,16 @@ mysql -u root -p
 mysqladmin -u root password '123456' 
 注：也可运行安全设置脚本，修改MySQL用户root的密码，同时可禁止root远程连接，移除test数据库和匿名用户
 /usr/local/mysql/bin/mysql_secure_installation 
+
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+[root@bibomb mysql]# servie mysql start
+-bash: servie: command not found
+[root@bibomb mysql]# service mysqld start 
+Starting MySQL.Logging to '/data/mysql/data/bibomb.err'.
+171114 19:38:44 mysqld_safe Directory '/var/lib/mysql' for UNIX socket file don't exists.
+The server quit without updating PID file (/data/mysql/data[FAILED]pid).
+
+
 -------------------------------------------------------------------------------------------------------
 
 六：配置MySQL
