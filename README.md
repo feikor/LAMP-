@@ -106,7 +106,7 @@ rpm -qa | grep mysql
 rpm -e mysql #普通删除模式 
 rpm -e --nodeps xxx（xxx为刚才的显示的列表） # 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除
 rm /etc/my.cnf #删除/etc/my.cnf 
- 
+
 
 二：安装编译代码需要的包
 yum -y install make gcc-c++ cmake bison-devel ncurses-devel
@@ -119,11 +119,14 @@ useradd -s /sbin/nologin -g mysql mysql
 四：下载MySQL 源码
 cd /usr/local/src
 wget -c http://cdn.mysql.com//Downloads/MySQL-5.6/mysql-5.6.33.tar.gz
- 
+
+wget -c http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.35.tar.gz
+
+mkdir -p /data/mysql/data
 
 五：安装
 复制代码
-tar zxvf mysql-5.6.33.tar.gz
+tar zxvf mysql-5.6.35.tar.gz
 cd mysql-5.6.33/
 cmake
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql
@@ -141,9 +144,55 @@ cmake
 -DDEFAULT_CHARSET=utf8
 -DDEFAULT_COLLATION=utf8_general_ci
 复制代码
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/data -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DMYSQL_UNIX_ADDR=/var/lib/mysql/mysql.sock -DMYSQL_TCP_PORT=3306 -DENABLED_LOCAL_INFILE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci
+
 编译并安装
 make && make install
  
+-------------------------------------------------------------------------------------------------------------
+六、修改mysql目录所有者和组
+
+修改mysql安装目录
+cd /usr/local/mysql   
+chown -R mysql:mysql . 
+
+修改mysql数据库文件目录
+cd /data/mysqldb  
+chown -R mysql:mysql .
+
+七、初始化mysql数据库
+cd /usr/local/mysql   
+scripts/mysql_install_db --user=mysql --datadir=/data/mysqldb 
+
+八、复制mysql服务启动配置文件
+cp /usr/local/mysql/support-files/my-default.cnf /etc/my.cnf
+注：如果/etc/my.cnf文件存在，则覆盖。
+
+九、复制mysql服务启动脚本及加入PATH路径
+cp support-files/mysql.server /etc/init.d/mysqld   
+  
+vim /etc/profile   
+  
+      PATH=/usr/local/mysql/bin:/usr/local/mysql/lib:$PATH  
+  
+      export PATH  
+  
+source /etc/profile  
+
+十、启动mysql服务并加入开机自启动(可选这个步骤，以后可以自己启动的)
+
+service mysqld start 
+
+十一、检查mysql服务是否启动
+netstat -tulnp | grep 3306   
+mysql -u root -p 
+密码为空，如果能登陆上，则安装成功。
+
+十二、修改MySQL用户root的密码
+mysqladmin -u root password '123456' 
+注：也可运行安全设置脚本，修改MySQL用户root的密码，同时可禁止root远程连接，移除test数据库和匿名用户
+/usr/local/mysql/bin/mysql_secure_installation 
+-------------------------------------------------------------------------------------------------------
 
 六：配置MySQL
 1、修改/usr/local/mysql权限
