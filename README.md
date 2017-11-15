@@ -34,6 +34,10 @@ make && make install
 编译安装Apache
 
 cd /usr/local/src/
+
+wget http://mirrors.sohu.com/apache/httpd-2.4.28.tar.gz
+tar zxvf httpd-2.4.28.tar.gz
+
 wget http://zy-res.oss-cn-hangzhou.aliyuncs.com/apache/httpd-2.4.23.tar.gz 
 tar zxvf httpd-2.4.23.tar.gz
 cd httpd-2.4.23
