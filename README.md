@@ -99,7 +99,14 @@ vi /etc/httpd/httpd.conf
 LoadModule php5_module  modules/libphp5.so
 
 找到 AddType application/x-gzip.gz.tgz，在下面添加一行
-AddType application/x-httpd-php.php
+AddType application/x-httpd-php .php
+
+<IfModule dir_module>
+    DirectoryIndex index.html index.php
+</IfModule>
+Warning: phpinfo(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function.
+
+找到date.timezone，修改为 date.timezone = PRC，后保存。
 
 
 
