@@ -75,6 +75,12 @@ chmod 755 httpd
 chkconfig --add httpd
 
 
+Php的安装
+wget http://mirrors.sohu.com/php/php-5.6.32.tar.gz
+tar zxvf php-5.6.32.tar.gz
+cd php-5.6.32
+
+
 
 
 
