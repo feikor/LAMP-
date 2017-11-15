@@ -37,18 +37,28 @@ cd /usr/local/src/
 
 wget http://mirrors.sohu.com/apache/httpd-2.4.28.tar.gz
 tar zxvf httpd-2.4.28.tar.gz
+cd httpd-2.4.28
 
 wget http://zy-res.oss-cn-hangzhou.aliyuncs.com/apache/httpd-2.4.23.tar.gz 
 tar zxvf httpd-2.4.23.tar.gz
 cd httpd-2.4.23
-./configure \
---prefix=/usr/local/apache --sysconfdir=/etc/httpd \
---enable-so --enable-cgi --enable-rewrite \
---with-zlib --with-pcre=/usr/local/pcre \
---with-apr=/usr/local/apr \
---with-apr-util=/usr/local/apr-util \
---enable-mods-shared=most --enable-mpms-shared=all \
+./configure 
+--prefix=/usr/local/apache 
+--sysconfdir=/etc/httpd 
+--enable-so 
+--enable-cgi 
+--enable-rewrite 
+--with-zlib 
+--with-pcre=/usr/local/pcre 
+--with-apr=/usr/local/apr 
+--with-apr-util=/usr/local/apr-util 
+--enable-mods-shared=most 
+--enable-mpms-shared=all 
 --with-mpm=event
+
+./configure --prefix=/usr/local/apache --sysconfdir=/etc/httpd --enable-so --enable-cgi --enable-rewrite --with-zlib --with-pcre=/usr/local/pcre --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util --enable-mods-shared=most --enable-mpms-shared=all --with-mpm=event
+
+
 make && make install
 
 cp -rf /usr/local/apache/bin/apachectl /etc/init.d/httpd
