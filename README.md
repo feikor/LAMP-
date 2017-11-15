@@ -80,6 +80,8 @@ wget http://mirrors.sohu.com/php/php-5.6.32.tar.gz
 tar zxvf php-5.6.32.tar.gz
 cd php-5.6.32
 
+yum install -y libxml2 libxml2-devel libmcrypt libmcrypt-devel zlib zlib-devel pcre pcre-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers
+
 
 
 
