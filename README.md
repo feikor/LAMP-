@@ -108,7 +108,25 @@ Warning: phpinfo(): It is not safe to rely on the system's timezone settings. Yo
 
 找到date.timezone，修改为 date.timezone = PRC，后保存。
 
+PHP Loaded Configuration File None 
+phpinfo()输出 loaded configuration file none
+解决方法可在apache配置文件中增加 
+PHPIniDir “The path to your php.ini”
+比如：PHPIniDir "/usr/local/php/etc/php.ini"
+重启apache。 
+确保PHPIniDir在loadModule php5_module之前 
+vi /etc/httpd/httpd.conf
 
+----------------------------------------------------------------------------
+查看系统时间和配置
+$ date -R
+$ cat /etc/sysconfig/clock
+$ tzselect
+tzselect命令只告诉你选择的时区的写法，并不会生效。所以现在它还不是东8区北京时间。你可以在.profile、.bash_profile或者/etc/profile中设置正确的TZ环境变量并导出。 例如在.bash_profile里面设置
+TZ='Asia/Shanghai'; export TZ
+source一下
+$ source ~/.bash_profile
+---------------------------------------------------------------------------
 
 
 
