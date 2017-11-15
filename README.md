@@ -93,6 +93,14 @@ cp -rf /usr/local/src/php-5.6.32/php.ini-production /usr/local/php/etc/php.ini
 vi /usr/local/apache/conf/httpd.conf
 php-cli和php-common
 
+vi /etc/httpd/httpd.conf
+
+在#LoadModule rewrite_module modules/mod_rewrite.so后面加下面内容
+LoadModule php5_module  modules/libphp5.so
+
+找到 AddType application/x-gzip.gz.tgz，在下面添加一行
+AddType application/x-httpd-php.php
+
 
 
 
