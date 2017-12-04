@@ -86,6 +86,9 @@ yum install -y libxml2 libxml2-devel libmcrypt libmcrypt-devel zlib zlib-devel p
 
 ./configure -prefix=/usr/local/php -with-apxs2=/usr/local/apache/bin/apxs -with-config-file-path=/usr/local/php/etc.with-libxml-dir=/usr/include/libxml2 -with-mmsql=mysqlnd -with-mysqli=mysqlnd -with-pdo-mysql=mysqlnd -disable-fileinfo -enable-mbstring -enable-ftp -enable-gd-native-ttf -enable-cli -enable-sockets.enableeexif -enable-zip -enable-soap -enable-pcntl -with-gd -with-jpeg-dir -with-png-dir -with-openssl-dir -with-openssl -with-pear -with-freetype-dir -with-zlib -with-mcrypt -with-xmlrpc -with-zlib-dir -with-bz2 -with-curl
 
+configure: WARNING: unrecognized options: --with-mmsql, --enable-sockets.enableeexif
+
+
 make && make install
 
 cp -rf /usr/local/src/php-5.6.32/php.ini-production /usr/local/php/etc/php.ini
