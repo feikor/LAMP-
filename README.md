@@ -132,6 +132,54 @@ $ source ~/.bash_profile
 ---------------------------------------------------------------------------
 
 
+svn
+cp /virtualhost/svnroot/shipin/conf/authz ./authz
+cp /virtualhost/svnroot/shipin/conf/passwd ./passwd
+cp /virtualhost/svnroot/shipin/conf/svnserve.conf ./svnserve.conf 
+ll
+vi authz 
+vi authz
+vi passwd 
+vi svnserve.conf 
+ll
+cd ..
+ll
+ll hooks/
+cd /virtualhost/www/pay.ip1840.com/
+ll
+vi index.php
+svn import -m "wxpay" ./ file:///virtualhost/svnroot/pay
+svn ci
+ll
+rm index.php 
+ll
+svn co file:///virtualhost/svnroot/pay/
+ll
+ls -al
+rm pay -R
+ll 
+svn co file:///virtualhost/svnroot/pay --username --password 821006
+ll
+rm 821006/ -R
+ll
+svn co file:///virtualhost/svnroot/pay ./ --username ychjasp --password 821006
+ll
+svn up
+cd /virtualhost/svnroot/
+ll
+cd pay
+ ll
+  374  cd hooks/
+  375  ll
+  376  cp ../../shipin/hooks/post-commit ./
+  377  ll
+  378  vi post-commit
+  379  ps -ef|grep svn
+  380  pkill kill 9500
+  381  kill 9500
+  382  ps -ef|grep svn
+  383  svnserve -d -r /virtualhost/svnroot/
+
 
 
 
